@@ -114,11 +114,6 @@ create table returnstatus(return_id int primary key,
                           foreign key(isbn_book2) references books(ISBN)on delete cascade);
 desc returnstatus;
 
-
-
-
-
-
 insert into returnstatus(return_id,return_cust,return_book_name,return_date,Isbn_book2)values
                         (1,111,'the girl on the train','2021-03-30','9355208618'), 
                         (2,112,'pride and prejudice','2021-06-10','9781616416'),
@@ -133,25 +128,14 @@ insert into returnstatus(return_id,return_cust,return_book_name,return_date,Isbn
           
 select * from returnstatus;
 
-
-
-
-
-
 # 1. Retrieve the book title, category, and rental price of all available books.
 select book_title,category,rental_price from books where status='yes';
+
 # 2. List the employee names and their respective salaries in descending order of salary.
 select employee_name,salary from employee order by salary desc;
 
-
-
 # 3. Retrieve the book titles and the corresponding customers who have issued those books.
 select i.issued_book_name,c.customer_name from issuestatus i join customer c on i.issued_cust=c.customer_id;
-
-
-
-
-
 
 # 4. Display the total count of books in each category.
  select category,count(category) as count from books group by category;
@@ -159,20 +143,8 @@ select i.issued_book_name,c.customer_name from issuestatus i join customer c on 
  # 5. Retrieve the employee names and their positions for the employees whose salaries are above Rs.50,000.
 select employee_name,position from employee where salary>50000;
 
-
-
-
 # 6. List the customer names who registered before 2022-01-01 and have not issued any books yet.
 select customer_name,reg_date from customer where reg_date<'2022-01-01' and customer_id not in (select issued_cust from issuestatus);
-
-
-
-
-
-
-
-
-
 
 # 7. Display the branch numbers and the total count of employees in each branch.
 select branch_no,count(employee_id) as total_employees from employee group by branch_no; 
@@ -182,10 +154,6 @@ select c.customer_name,i.issue_date from customer c left join issuestatus i on c
 where year(i.issue_date)=2023 and month(i.issue_date)=6;
 # 9. Retrieve book_title from book table containing business
 select book_title from books where category='business';
-
-
-
-
 
 # 10.Retrieve the branch numbers along with the count of employees for branches having more than 5 employees.
 select b.branch_no,count(e.employee_id) as total_employees from branch b 
